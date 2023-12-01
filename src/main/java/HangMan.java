@@ -34,8 +34,16 @@ public class HangMan {
             System.out.println("\nCurrent word: " + new String(guessedWord));
             System.out.println("Tries left: " + (MAX_TRIES - tries));
             System.out.print("Enter a letter: ");
+            String guessString = keyboard.nextLine();
+            char guess = guessString.toLowerCase().charAt(0);
 
-            char guess = keyboard.nextLine().toLowerCase().charAt(0);
+            if (guessString.equals(wordToGuess)) {
+                wordGuessed = true;
+            }
+            if (!guessString.equals(wordToGuess) && guessString.length() > 1) {
+                System.out.println("Please guess one letter at a time unless you're ready to guess the full word. ");
+                continue;
+            }
 
             if (guessedLetters.get(guess)) {
                 System.out.println("You've already guessed this letter. Try another one.");
