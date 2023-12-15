@@ -27,15 +27,151 @@ public class HangMan {
         for (int i = 0; i < wordToGuess.length(); i++) {
             guessedWord[i] = '_';
         }
-
-        System.out.println("Welcome to Hangman!");
+        System.out.println();
+        System.out.println("---------------------------------------");
+        System.out.println("         Welcome to Hangman!");
+        System.out.println("---------------------------------------");
+        System.out.println();
 
         while (!wordGuessed && tries < MAX_TRIES) {
+            if (tries == 5) {
+                System.out.println("         -------------------");
+                System.out.println("         -------------------");
+                System.out.println("         ||               |");
+                System.out.println("         ||               |");
+                System.out.println("         ||             ^^^^^");
+                System.out.println("         ||            ( 0_0 )");
+                System.out.println("         ||              | |");
+                System.out.println("         ||          (-       -)");
+                System.out.println("         ||          | |     | |");
+                System.out.println("         ||          | |     | |");
+                System.out.println("         ||          ( )=====( )");
+                System.out.println("         ||            | |");
+                System.out.println("         ||            | |");
+                System.out.println("         ||            | |");
+                System.out.println("         ||            | |");
+                System.out.println("         ||            (_)");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("------------------");
+                System.out.println("------------------");
+            } else if (tries == 4) {
+                System.out.println("         -------------------");
+                System.out.println("         -------------------");
+                System.out.println("         ||               |");
+                System.out.println("         ||               |");
+                System.out.println("         ||             ^^^^^");
+                System.out.println("         ||            ( 0_0 )");
+                System.out.println("         ||              | |");
+                System.out.println("         ||          (-       -)");
+                System.out.println("         ||          | |     | |");
+                System.out.println("         ||          | |     | |");
+                System.out.println("         ||          ( )=====( )");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("------------------");
+                System.out.println("------------------");
+            } else if (tries == 3) {
+                System.out.println("         -------------------");
+                System.out.println("         -------------------");
+                System.out.println("         ||               |");
+                System.out.println("         ||               |");
+                System.out.println("         ||             ^^^^^");
+                System.out.println("         ||            ( 0_0 )");
+                System.out.println("         ||              | |");
+                System.out.println("         ||          (-      |");
+                System.out.println("         ||          | |     |");
+                System.out.println("         ||          | |     |");
+                System.out.println("         ||          ( )=====(");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("------------------");
+                System.out.println("------------------");
+            } else if (tries == 2) {
+                System.out.println("         -------------------");
+                System.out.println("         -------------------");
+                System.out.println("         ||               |");
+                System.out.println("         ||               |");
+                System.out.println("         ||             ^^^^^");
+                System.out.println("         ||            ( 0_0 )");
+                System.out.println("         ||              | |");
+                System.out.println("         ||            |     |");
+                System.out.println("         ||            |     |");
+                System.out.println("         ||            |     |");
+                System.out.println("         ||            )=====(");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("------------------");
+                System.out.println("------------------");
+            } else if (tries == 1) {
+                System.out.println("         -------------------");
+                System.out.println("         -------------------");
+                System.out.println("         ||               |");
+                System.out.println("         ||               |");
+                System.out.println("         ||             ^^^^^");
+                System.out.println("         ||            ( 0_0 )");
+                System.out.println("         ||              | |");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("------------------");
+                System.out.println("------------------");
+            } else {
+                System.out.println("         -------------------");
+                System.out.println("         -------------------");
+                System.out.println("         ||               |");
+                System.out.println("         ||               |");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("         ||");
+                System.out.println("------------------");
+                System.out.println("------------------");
+            }
             System.out.println("\nCurrent word: " + new String(guessedWord));
             System.out.println("Tries left: " + (MAX_TRIES - tries));
             System.out.print("Enter a letter: ");
             String guessString = keyboard.nextLine();
-            char guess = guessString.toLowerCase().charAt(0);
+            char guess;
+            if (guessString.length() > 0) {
+                guess = guessString.toLowerCase().charAt(0);
+            } else {
+                System.out.println("\nPlease guess the letter or the entire word.\n");
+                continue;
+            }
 
             if (guessString.equals(wordToGuess)) {
                 wordGuessed = true;
@@ -61,7 +197,9 @@ public class HangMan {
 
             if (!found) {
                 tries++;
+                System.out.println();
                 System.out.println("Incorrect guess.");
+                System.out.println();
             }
 
             if (wordToGuess.equals(new String(guessedWord))) {
@@ -73,6 +211,26 @@ public class HangMan {
         if (wordGuessed) {
             System.out.println("\nCongratulations! You've guessed the word: " + wordToGuess);
         } else {
+            System.out.println("         -------------------");
+            System.out.println("         -------------------");
+            System.out.println("         ||               |");
+            System.out.println("         ||               |");
+            System.out.println("         ||             ^^^^^");
+            System.out.println("         ||            ( 0_0 )");
+            System.out.println("         ||              | |");
+            System.out.println("         ||          (-       -)");
+            System.out.println("         ||          | |     | |");
+            System.out.println("         ||          | |     | |");
+            System.out.println("         ||          ( )=====( )");
+            System.out.println("         ||            | |  | |");
+            System.out.println("         ||            | |  | |");
+            System.out.println("         ||            | |  | |");
+            System.out.println("         ||            | |  | |");
+            System.out.println("         ||            (_)  (_)");
+            System.out.println("         ||");
+            System.out.println("         ||");
+            System.out.println("------------------");
+            System.out.println("------------------");
             System.out.println("\nSorry, you've run out of tries. The word was: " + wordToGuess);
         }
     }
