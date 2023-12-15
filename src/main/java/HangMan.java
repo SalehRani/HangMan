@@ -18,7 +18,7 @@ public class HangMan {
         char[] letterArr = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         int tries = 0;
         boolean wordGuessed = false;
-        boolean gameOver = false;
+        boolean gameOver;
         wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
         guessedWord = new char[wordToGuess.length()];
 
@@ -38,7 +38,9 @@ public class HangMan {
         System.out.println("---------------------------------------");
         System.out.println();
 
-        while (!wordGuessed && tries < MAX_TRIES) {
+        while (tries < MAX_TRIES) {
+
+            gameOver = false;
 
             if (tries == 5) {
                 System.out.println("         -------------------");
@@ -186,7 +188,7 @@ public class HangMan {
                 wordGuessed = true;
             }
 
-            if (guessedLetters.get(guess) && !guessString.equals(wordToGuess)) {
+            if (guessedLetters.get(guess) && !guessString.equals(wordToGuess) & guessString.length() == 1) {
                 System.out.println("You've already guessed this letter. Try another one.\n");
             }
 
@@ -194,7 +196,7 @@ public class HangMan {
             boolean found = false;
 
             if (!guessString.equals(wordToGuess) && guessString.length() > 1) {
-                System.out.println("Please guess one letter at a time unless you're ready to guess the full word.\n");
+                System.out.println("Please guess one letter at a time unless you're ready to guess the full word.");
             } else {
                 for (int i = 0; i < wordToGuess.length(); i++) {
                     if (wordToGuess.charAt(i) == guess) {
