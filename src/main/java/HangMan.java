@@ -192,7 +192,7 @@ public class HangMan {
                     continue;
                 }
             } else {
-                System.out.println("\nPlease guess the letter or the entire word.\n");
+                System.out.println("\nPlease guess a letter or the entire word.\n");
                 continue;
             }
 
