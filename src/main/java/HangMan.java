@@ -205,6 +205,7 @@ public class HangMan {
 
             if (guessedLetters.get(guess) && !guessString.equals(wordToGuess) & guessString.length() == 1) {
                 System.out.println("You've already guessed this letter. Try another one.\n");
+                continue;
             }
 
             if (!guessString.equals(wordToGuess) && guessString.length() > 1) {
