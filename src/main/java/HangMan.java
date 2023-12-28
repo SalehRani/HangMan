@@ -200,13 +200,11 @@ public class HangMan {
                 wordGuessed = true;
             }
 
-            guessedLetters.put(guess, true);
-            boolean found = false;
-
-            if (guessedLetters.get(guess) && !guessString.equals(wordToGuess) & guessString.length() == 1) {
+            if (guessedLetters.get(guess) && !guessString.equals(wordToGuess) && guessString.length() == 1) {
                 System.out.println("You've already guessed this letter. Try another one.\n");
-                continue;
             }
+
+            boolean found = false;
 
             if (!guessString.equals(wordToGuess) && guessString.length() > 1) {
                 System.out.println("Please guess one letter at a time unless you're ready to guess the full word.");
@@ -219,12 +217,14 @@ public class HangMan {
                 }
             }
 
-            if (!found) {
+            if (!found && !guessedLetters.get(guess)) {
                 tries++;
                 System.out.println();
                 System.out.println("Incorrect guess.");
                 System.out.println();
             }
+
+            guessedLetters.put(guess, true);
 
             if (wordToGuess.equals(new String(guessedWord))) {
                 wordGuessed = true;
