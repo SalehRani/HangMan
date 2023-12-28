@@ -179,6 +179,18 @@ public class HangMan {
 
             if (!guessString.isEmpty()) {
                 guess = guessString.toLowerCase().charAt(0);
+                boolean validLetter = false;
+                for (char c : letterArr) {
+                    if (guess == c) {
+                        validLetter = true;
+                        break;
+                    }
+                }
+
+                if (!validLetter) {
+                    System.out.println("Please enter a valid letter.\n");
+                    continue;
+                }
             } else {
                 System.out.println("\nPlease guess the letter or the entire word.\n");
                 continue;
@@ -188,12 +200,12 @@ public class HangMan {
                 wordGuessed = true;
             }
 
+            guessedLetters.put(guess, true);
+            boolean found = false;
+
             if (guessedLetters.get(guess) && !guessString.equals(wordToGuess) & guessString.length() == 1) {
                 System.out.println("You've already guessed this letter. Try another one.\n");
             }
-
-            guessedLetters.put(guess, true);
-            boolean found = false;
 
             if (!guessString.equals(wordToGuess) && guessString.length() > 1) {
                 System.out.println("Please guess one letter at a time unless you're ready to guess the full word.");
