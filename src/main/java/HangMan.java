@@ -10,11 +10,14 @@ public class HangMan {
 
     private static String API_BASE_URL = "https://random-word-api.herokuapp.com/word";
     private static final RestTemplate restTemplate = new RestTemplate();
-
     private static final String[] WORDS = {"java", "programming", "computer", "algorithm", "software", "developer"};
     private static final int MAX_TRIES = 6;
 
     public static void main(String[] args) {
+        HangMan.gameLogic();
+    }
+
+    public static void gameLogic() {
 
         Scanner keyboard = new Scanner(System.in);
         // Takes in account the length of words array, and randomly generates the index of the word to choose from the array.
