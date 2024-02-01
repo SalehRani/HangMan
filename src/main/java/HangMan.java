@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class HangMan {
 
     private static String API_BASE_URL = "https://random-word-api.herokuapp.com/word";
-    private static RestTemplate restTemplate = new RestTemplate();
+    private static final RestTemplate restTemplate = new RestTemplate();
 
     private static final String[] WORDS = {"java", "programming", "computer", "algorithm", "software", "developer"};
     private static final int MAX_TRIES = 6;
