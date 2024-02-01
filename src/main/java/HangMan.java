@@ -1,9 +1,13 @@
-import java.util.Arrays;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class HangMan {
+
+    public static String API_BASE_URL = "https://random-word-api.herokuapp.com/word";
+    private static RestTemplate restTemplate = new RestTemplate();
 
     private static final String[] WORDS = {"java", "programming", "computer", "algorithm", "software", "developer"};
     private static final int MAX_TRIES = 6;
@@ -19,7 +23,13 @@ public class HangMan {
         int tries = 0;
         boolean wordGuessed = false;
         boolean gameOver;
-        wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
+
+        //Old Way
+        //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
+
+        //API Way
+        wordToGuess = restTemplate.getForObject(API_BASE_URL, String.class);
+
         guessedWord = new char[wordToGuess.length()];
 
         // Populating Map with every letter initially false
@@ -253,7 +263,12 @@ public class HangMan {
                         wordGuessed = false;
                         tries = 0;
                         guessedLetters = new HashMap<>();
-                        wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
+
+                        //Old Way
+                        //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
+
+                        //API Way
+                        wordToGuess = restTemplate.getForObject(API_BASE_URL, String.class);
                         guessedWord = new char[wordToGuess.length()];
 
                         // Populating Map with every letter initially false
@@ -279,7 +294,12 @@ public class HangMan {
             } else if (tries == 6) {
                 tries = 0;
                 guessedLetters = new HashMap<>();
-                wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
+
+                //Old Way
+                //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
+
+                //API Way
+                wordToGuess = restTemplate.getForObject(API_BASE_URL, String.class);
                 guessedWord = new char[wordToGuess.length()];
 
                 System.out.println("         -------------------");
