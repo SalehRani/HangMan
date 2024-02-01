@@ -1,3 +1,5 @@
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -6,7 +8,7 @@ import java.util.Scanner;
 
 public class HangMan {
 
-    public static String API_BASE_URL = "https://random-word-api.herokuapp.com/word";
+    private static String API_BASE_URL = "https://random-word-api.herokuapp.com/word";
     private static RestTemplate restTemplate = new RestTemplate();
 
     private static final String[] WORDS = {"java", "programming", "computer", "algorithm", "software", "developer"};
@@ -16,7 +18,7 @@ public class HangMan {
 
         Scanner keyboard = new Scanner(System.in);
         // Takes in account the length of words array, and randomly generates the index of the word to choose from the array.
-        String wordToGuess;
+        String wordToGuess = "test";
         char[] guessedWord;
         Map<Character, Boolean> guessedLetters = new HashMap<>();
         char[] letterArr = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
@@ -28,7 +30,14 @@ public class HangMan {
         //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
 
         //API Way
-        wordToGuess = restTemplate.getForObject(API_BASE_URL, String.class);
+        try {
+            String word = restTemplate.getForObject(API_BASE_URL, String.class);
+            wordToGuess = word.substring(2, word.length() - 2);
+        } catch (RestClientResponseException e) {
+            System.out.println(e.getRawStatusCode() + ": " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            System.out.println(e.getMessage());
+        }
 
         guessedWord = new char[wordToGuess.length()];
 
@@ -268,7 +277,15 @@ public class HangMan {
                         //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
 
                         //API Way
-                        wordToGuess = restTemplate.getForObject(API_BASE_URL, String.class);
+                        try {
+                            String word = restTemplate.getForObject(API_BASE_URL, String.class);
+                            wordToGuess = word.substring(2, word.length() - 2);
+                        } catch (RestClientResponseException e) {
+                            System.out.println(e.getRawStatusCode() + ": " + e.getStatusText());
+                        } catch (ResourceAccessException e) {
+                            System.out.println(e.getMessage());
+                        }
+
                         guessedWord = new char[wordToGuess.length()];
 
                         // Populating Map with every letter initially false
@@ -297,10 +314,6 @@ public class HangMan {
 
                 //Old Way
                 //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
-
-                //API Way
-                wordToGuess = restTemplate.getForObject(API_BASE_URL, String.class);
-                guessedWord = new char[wordToGuess.length()];
 
                 System.out.println("         -------------------");
                 System.out.println("         -------------------");
@@ -331,6 +344,19 @@ public class HangMan {
 
                     if (choice.equalsIgnoreCase("Y")) {
                         // Populating Map with every letter initially false
+
+                        //API Way
+                        try {
+                            String word = restTemplate.getForObject(API_BASE_URL, String.class);
+                            wordToGuess = word.substring(2, word.length() - 2);
+                        } catch (RestClientResponseException e) {
+                            System.out.println(e.getRawStatusCode() + ": " + e.getStatusText());
+                        } catch (ResourceAccessException e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                        guessedWord = new char[wordToGuess.length()];
+
                         for (int i = 0; i < 26; i++) {
                             guessedLetters.put(letterArr[i], false);
                         }
