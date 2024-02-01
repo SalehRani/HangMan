@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class HangMan {
 
-    private static String API_BASE_URL = "https://random-word-api.herokuapp.com/word";
+    private static final String API_BASE_URL = "https://random-word-api.herokuapp.com/word";
     private static final RestTemplate restTemplate = new RestTemplate();
-    private static final String[] WORDS = {"java", "programming", "computer", "algorithm", "software", "developer"};
+    //private static final String[] WORDS = {"java", "programming", "computer", "algorithm", "software", "developer"};
     private static final int MAX_TRIES = 6;
 
     public static void main(String[] args) {
@@ -35,9 +35,11 @@ public class HangMan {
         //API Way
         try {
             String word = restTemplate.getForObject(API_BASE_URL, String.class);
-            wordToGuess = word.substring(2, word.length() - 2);
+            if (word != null) {
+                wordToGuess = word.substring(2, word.length() - 2);
+            }
         } catch (RestClientResponseException e) {
-            System.out.println(e.getRawStatusCode() + ": " + e.getStatusText());
+            System.out.println(e.getStatusText());
         } catch (ResourceAccessException e) {
             System.out.println(e.getMessage());
         }
@@ -282,9 +284,11 @@ public class HangMan {
                         //API Way
                         try {
                             String word = restTemplate.getForObject(API_BASE_URL, String.class);
-                            wordToGuess = word.substring(2, word.length() - 2);
+                            if (word != null) {
+                                wordToGuess = word.substring(2, word.length() - 2);
+                            }
                         } catch (RestClientResponseException e) {
-                            System.out.println(e.getRawStatusCode() + ": " + e.getStatusText());
+                            System.out.println(e.getStatusText());
                         } catch (ResourceAccessException e) {
                             System.out.println(e.getMessage());
                         }
@@ -351,9 +355,11 @@ public class HangMan {
                         //API Way
                         try {
                             String word = restTemplate.getForObject(API_BASE_URL, String.class);
-                            wordToGuess = word.substring(2, word.length() - 2);
+                            if (word != null) {
+                                wordToGuess = word.substring(2, word.length() - 2);
+                            }
                         } catch (RestClientResponseException e) {
-                            System.out.println(e.getRawStatusCode() + ": " + e.getStatusText());
+                            System.out.println(e.getStatusText());
                         } catch (ResourceAccessException e) {
                             System.out.println(e.getMessage());
                         }
