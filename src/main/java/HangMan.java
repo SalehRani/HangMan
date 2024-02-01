@@ -2,6 +2,7 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,28 +14,31 @@ public class HangMan {
     //private static final String[] WORDS = {"java", "programming", "computer", "algorithm", "software", "developer"};
     private static final int MAX_TRIES = 6;
 
+    private static final Scanner keyboard = new Scanner(System.in);
+    // Takes in account the length of words array, and randomly generates the index of the word to choose from the array.
+    private static String wordToGuess = "test";
+    private static Map<Character, Boolean> guessedLetters = new HashMap<>();
+    private static final char[] letterArr = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    private static int tries = 0;
+    private static boolean wordGuessed = false;
+
     public static void main(String[] args) {
         HangMan.gameLogic();
     }
 
     public static void gameLogic() {
 
-        Scanner keyboard = new Scanner(System.in);
-        // Takes in account the length of words array, and randomly generates the index of the word to choose from the array.
-        String wordToGuess = "test";
         char[] guessedWord;
-        Map<Character, Boolean> guessedLetters = new HashMap<>();
-        char[] letterArr = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        int tries = 0;
-        boolean wordGuessed = false;
         boolean gameOver;
+        String word;
+
 
         //Old Way
         //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
 
         //API Way
         try {
-            String word = restTemplate.getForObject(API_BASE_URL, String.class);
+            word = restTemplate.getForObject(API_BASE_URL, String.class);
             if (word != null) {
                 wordToGuess = word.substring(2, word.length() - 2);
             }
@@ -58,7 +62,7 @@ public class HangMan {
 
         System.out.println();
         System.out.println("---------------------------------------");
-        System.out.println("         Welcome to Hangman!");
+        System.out.println("          Welcome to Hangman!          ");
         System.out.println("---------------------------------------");
         System.out.println();
 
@@ -283,7 +287,7 @@ public class HangMan {
 
                         //API Way
                         try {
-                            String word = restTemplate.getForObject(API_BASE_URL, String.class);
+                            word = restTemplate.getForObject(API_BASE_URL, String.class);
                             if (word != null) {
                                 wordToGuess = word.substring(2, word.length() - 2);
                             }
@@ -354,7 +358,7 @@ public class HangMan {
 
                         //API Way
                         try {
-                            String word = restTemplate.getForObject(API_BASE_URL, String.class);
+                            word = restTemplate.getForObject(API_BASE_URL, String.class);
                             if (word != null) {
                                 wordToGuess = word.substring(2, word.length() - 2);
                             }
