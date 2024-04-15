@@ -2,7 +2,6 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -31,7 +30,6 @@ public class HangMan {
         char[] guessedWord;
         boolean gameOver;
         String word;
-
 
         //Old Way
         //wordToGuess = WORDS[(int) (Math.random() * WORDS.length)];
